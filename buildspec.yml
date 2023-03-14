@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 16
+  pre_build:
+    commands:
+      - echo Installing source NPM dependencies
+      - npm install
+      - npm install -g gulp-cli
+  build:
+    commands:
+      - echo Building Node Red
+      - gulp minify
+      - gulp build
+  post_build:
+    commands:
+      - echo Build completed on `date`
+artifacts:
+  files:
+   - dist/**/*
+    
